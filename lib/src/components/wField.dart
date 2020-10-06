@@ -9,17 +9,15 @@ class EditWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       obscureText: true,
-      decoration: InputDecoration(        
-        border: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Color.fromRGBO(71, 130, 116, 0),
-            width: 3.0,
-            style: BorderStyle.solid,
-          ),
-        ),
+      decoration: InputDecoration( 
+        enabledBorder: const OutlineInputBorder(
+        borderSide: const BorderSide(
+          color: Color.fromRGBO(71, 130, 116, 1.0), 
+          width: 3.0),
+        ),       
         labelText: label,
         labelStyle: TextStyle(
-          color: Color.fromRGBO(71, 130, 116, 25.0),
+          color: Color.fromRGBO(71, 130, 116, 75.0),
           fontFamily: "Inter",
           fontWeight: FontWeight.bold,
         ),

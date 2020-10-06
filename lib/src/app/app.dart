@@ -9,6 +9,7 @@ class App extends StatelessWidget {
           FocusScope.of(context).requestFocus(new FocusNode());
         },
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Login',
           home: Login(),
         )

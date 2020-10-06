@@ -11,15 +11,29 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
+      body: Padding(
+        padding: EdgeInsets.all(10.0),
         child: Column(
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            EditWidget('Email'),
+          children: [
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  EditWidget('Email'),
+                ],
+              ),
+            ),
+            Container(
+              child: Icon(
+                Icons.tune,
+                color: Colors.grey,
+                size: 24.0,
+                semanticLabel: 'Configurações do servidor'
+              ),
+            ),
           ],
-        ),
-      ),  
+        ), 
+      )
     );
   }
 }
