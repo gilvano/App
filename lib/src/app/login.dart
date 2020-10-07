@@ -18,6 +18,17 @@ class _LoginState extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: Text(
+                    'Login',
+                    style: TextStyle(
+                      fontFamily: 'PlayfairDisplay',
+                      fontSize: 80.0,
+                      color: Color.fromRGBO(71, 130, 116, 1.0), 
+                    ),
+                  ),
+                ),
                 Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -34,17 +45,22 @@ class _LoginState extends State<Login> {
                       EditWidget('Senha'),
                     ],
                   ),
-                ),
+                ),                
                 Container(
                   height: 50,
                   margin: EdgeInsets.only(top: 20),
                   child: RaisedButton(
+                      color: Color.fromRGBO(71, 130, 116, 1.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(3.0),
                       ),
                       child: Center(
                         child: Text(
                           "Entrar",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       onPressed: () {}),
@@ -55,10 +71,13 @@ class _LoginState extends State<Login> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Center(
-                        child: Icon(Icons.tune,
+                        child: IconButton(
+                            padding: EdgeInsets.only(top: 10.0),
+                            icon: Icon(Icons.tune),
                             color: Colors.grey,
-                            size: 24.0,
-                            semanticLabel: 'Configurações do servidor'),
+                            iconSize: 24.0,
+                            onPressed: () {},
+                        ),
                       ),
                     ],
                   ),
