@@ -34,7 +34,7 @@ class _LoginState extends State<Login> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      EditWidget('Email'),
+                      EditWidget('Email', TextInputType.emailAddress, false),
                     ],
                   ),
                 ),
@@ -43,7 +43,7 @@ class _LoginState extends State<Login> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      EditWidget('Senha'),
+                      EditWidget('Senha', TextInputType.visiblePassword, true),
                     ],
                   ),
                 ),
