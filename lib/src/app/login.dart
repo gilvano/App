@@ -1,3 +1,4 @@
+import 'package:entrega_app/src/app/config.dart';
 import 'package:flutter/material.dart';
 import 'package:entrega_app/src/components/wField.dart';
 
@@ -25,7 +26,7 @@ class _LoginState extends State<Login> {
                     style: TextStyle(
                       fontFamily: 'PlayfairDisplay',
                       fontSize: 80.0,
-                      color: Color.fromRGBO(71, 130, 116, 1.0), 
+                      color: Color.fromRGBO(71, 130, 116, 1.0),
                     ),
                   ),
                 ),
@@ -45,7 +46,7 @@ class _LoginState extends State<Login> {
                       EditWidget('Senha'),
                     ],
                   ),
-                ),                
+                ),
                 Container(
                   height: 50,
                   margin: EdgeInsets.only(top: 20),
@@ -72,11 +73,16 @@ class _LoginState extends State<Login> {
                     children: [
                       Center(
                         child: IconButton(
-                            padding: EdgeInsets.only(top: 10.0),
-                            icon: Icon(Icons.tune),
-                            color: Colors.grey,
-                            iconSize: 24.0,
-                            onPressed: () {},
+                          padding: EdgeInsets.only(top: 10.0),
+                          icon: Icon(Icons.tune),
+                          color: Colors.grey,
+                          iconSize: 24.0,
+                          onPressed: () {
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(builder: (context) => Configuracoes())
+                            );
+                          },
                         ),
                       ),
                     ],
