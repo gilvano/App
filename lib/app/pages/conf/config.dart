@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:entrega_app/src/components/wField.dart';
+import 'package:entrega_app/app/widgets/wField.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Configuracoes extends StatefulWidget {

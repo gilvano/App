@@ -1,6 +1,6 @@
-import 'package:entrega_app/src/app/config.dart';
+import 'package:entrega_app/app/pages/conf/config.dart';
 import 'package:flutter/material.dart';
-import 'package:entrega_app/src/components/wField.dart';
+import 'package:entrega_app/app/widgets/wField.dart';
 
 class Login extends StatefulWidget {
   @override

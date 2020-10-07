@@ -1,4 +1,4 @@
-import 'package:entrega_app/src/app/login.dart';
+import 'package:entrega_app/app/pages/login/login.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
