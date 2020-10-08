@@ -14,18 +14,19 @@ class _ConfiguracoesState extends State<Configuracoes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Color.fromRGBO(71, 130, 116, 1.0),
-          title: Text(
-            'Configurações',
-            style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.white,
-                fontWeight: FontWeight.bold),
-          ),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Color.fromRGBO(71, 130, 116, 1.0),
+        title: Text(
+          'Configurações',
+          style: TextStyle(
+              fontSize: 20.0,
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
         ),
-        body: Container(
+      ),
+      body: Builder(
+        builder: (context) => Container(
           child: Padding(
             padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
             child: Column(
@@ -40,7 +41,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
                         'IP do Servidor',
                         TextInputType.url,
                         false,
-                        controller: iPController,                        
+                        controller: iPController,
                       ),
                     ],
                   ),
@@ -50,7 +51,12 @@ class _ConfiguracoesState extends State<Configuracoes> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      EditWidget('Porta', TextInputType.text, false),
+                      EditWidget(
+                        'Porta',
+                        TextInputType.number,
+                        false,
+                        controller: portaController,
+                      ),
                     ],
                   ),
                 ),
@@ -73,12 +79,19 @@ class _ConfiguracoesState extends State<Configuracoes> {
                       ),
                       onPressed: () {
                         _setIpFromSharedPref();
+                        _setPortaFromSharedPref();
+                        final snackBar = SnackBar(
+                          content: Text('Configurações salvas!'),
+                        );
+                        Scaffold.of(context).showSnackBar(snackBar);
                       }),
                 ),
               ],
             ),
           ),
-        ));
+        )
+      ), 
+    );
   }
 
   Future<void> _setIpFromSharedPref() async {
@@ -86,25 +99,29 @@ class _ConfiguracoesState extends State<Configuracoes> {
     prefs.setString("IPSERVER", iPController.text);
   }
 
-  // Future<String> _setPortaFromSharedPref() async {
-  //     SharedPreferences prefs = await SharedPreferences.getInstance();
-  //     prefs.setString("IPSERVER", _controller.text);
-  //     prefs.setBool("isON", isON);
-  // }
+  Future<void> _setPortaFromSharedPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("PORTASERVER", portaController.text);
+  }
 
   Future<String> _getIpFromSharedPref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString("IPSERVER") ?? "";
   }
 
+  Future<String> _getPortaFromSharedPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("PORTASERVER") ?? "";
+  }
+
   @override
   void initState() {
-      super.initState();
-      _getIpFromSharedPref().then((s) {
-          iPController.text = s;
-      });
-      // _getBoolFromSharedPref().then((b) {
-      //     isON = b;
-      // });
+    super.initState();
+    _getIpFromSharedPref().then((s) {
+      iPController.text = s;
+    });
+    _getPortaFromSharedPref().then((s) {
+      portaController.text = s;
+    });
   }
 }
