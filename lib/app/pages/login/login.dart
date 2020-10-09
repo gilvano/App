@@ -10,11 +10,12 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController _usernameController = TextEditingController(text: "");
+  TextEditingController _passwordController = TextEditingController(text: "");
+
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<AuthBloc>(context);
-    TextEditingController _usernameController = TextEditingController(text: "");
-    TextEditingController _passwordController = TextEditingController(text: "");
 
     return Scaffold(
         backgroundColor: Colors.white,
