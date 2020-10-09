@@ -8,17 +8,18 @@ part 'auth_state.dart';
 class AuthBloc extends Cubit<AuthState> {
   AuthBloc() : super(AuthInitialState());
 
-  void authenticate(String username, String password) {
+  Future<void> authenticate(String username, String password) async {
     try {
+      //emit(AuthInProgressState());
       emit(AuthInProgressState());
       AuthRepository repo = AuthRepository(Dio());
-      repo.login({
+      await repo.login({
         "username": username,
         "password": password,
       });
       emit(AuthSuccessState());
     } catch (e) {
-      emit(AuthErrorState());
+      emit(AuthErrorState(e));
     }
   }
 }

@@ -11,25 +11,26 @@ class App extends StatelessWidget {
         onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());
         },
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Login',
-          home: BlocProvider<AuthBloc>(
+        child: BlocProvider<AuthBloc>(
             create: (context) => AuthBloc(),
-            child: BlocBuilder<AuthBloc, AuthState>(
-              builder: (context, state) {
-                if (state is AuthSuccessState) {
-                  return Home();
-                }
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Login',
+              home: BlocBuilder<AuthBloc, AuthState>(
+                builder: (ctxb, state) {
+                  if (state is AuthSuccessState) {
+                    return Home();
+                  } else {
+                    return Login();
+                  }
+                },
+              ),
+            )));
+  }
 
-                if (state is AuthInProgressState) {
-                  return Center(child: CircularProgressIndicator());
-                }
-
-                return Login();
-              },
-            ),
-          ),
-        ));
+  Widget buildLoading() {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
   }
 }
