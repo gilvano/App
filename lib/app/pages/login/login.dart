@@ -1,5 +1,5 @@
 import 'package:entrega_app/app/pages/conf/config.dart';
-import 'package:entrega_app/cubit/login_cubit.dart';
+import 'package:entrega_app/blocs/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:entrega_app/app/widgets/wField.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,92 +12,105 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<LoginCubit>(context);
-    
+    final bloc = BlocProvider.of<AuthBloc>(context);
+    TextEditingController _usernameController = TextEditingController(text: "");
+    TextEditingController _passwordController = TextEditingController(text: "");
+
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Container(
-            child: Padding(
-              padding: EdgeInsets.all(30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                        fontFamily: 'PlayfairDisplay',
-                        fontSize: 80.0,
-                        color: Color.fromRGBO(71, 130, 116, 1.0),
+            height: MediaQuery.of(context).size.height,
+            padding: EdgeInsets.all(24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: Text(
+                    'Login',
+                    style: TextStyle(
+                      fontFamily: 'PlayfairDisplay',
+                      fontSize: 80.0,
+                      color: Color.fromRGBO(71, 130, 116, 1.0),
+                    ),
+                  ),
+                ),
+                Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      EditWidget(
+                        'Email',
+                        TextInputType.emailAddress,
+                        false,
+                        controller: _usernameController,
                       ),
-                    ),
+                    ],
                   ),
-                  Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        EditWidget('Email', TextInputType.emailAddress, false),
-                      ],
-                    ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 15),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      EditWidget(
+                        'Senha',
+                        TextInputType.visiblePassword,
+                        true,
+                        controller: _passwordController,
+                      ),
+                    ],
                   ),
-                  Container(
-                    padding: EdgeInsets.only(top: 15),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        EditWidget(
-                            'Senha', TextInputType.visiblePassword, true),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 50,
-                    margin: EdgeInsets.only(top: 20),
-                    child: RaisedButton(
-                        color: Color.fromRGBO(71, 130, 116, 1.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(3.0),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Entrar",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
+                ),
+                Container(
+                  height: 50,
+                  margin: EdgeInsets.only(top: 20),
+                  child: RaisedButton(
+                      color: Color.fromRGBO(71, 130, 116, 1.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(3.0),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Entrar",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        onPressed: () {
-                          bloc.authenticate('aaa', '123');
-                        }),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: IconButton(
-                            padding: EdgeInsets.only(top: 10.0),
-                            icon: Icon(Icons.tune),
-                            color: Colors.grey,
-                            iconSize: 24.0,
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Configuracoes()));
-                            },
-                          ),
+                      ),
+                      onPressed: () {
+                        bloc.authenticate(
+                          _usernameController.text,
+                          _passwordController.text,
+                        );
+                      }),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: IconButton(
+                          padding: EdgeInsets.only(top: 10.0),
+                          icon: Icon(Icons.tune),
+                          color: Colors.grey,
+                          iconSize: 24.0,
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Configuracoes()));
+                          },
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ));

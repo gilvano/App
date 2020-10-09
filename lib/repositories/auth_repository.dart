@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:entrega_app/models/auth_model.dart';
-
 
 class AuthRepository {
   AuthRepository(this.client) {
@@ -9,7 +7,7 @@ class AuthRepository {
 
   final Dio client;
 
-  Future<Map> login(Map<String, dynamic> data) async {
+  Future<void> login(Map<String, dynamic> data) async {
     try {
       var response = await client.post("/auth/login", data: data);
       return response.data;
@@ -17,5 +15,4 @@ class AuthRepository {
       throw (e.message);
     }
   }
- 
 }
