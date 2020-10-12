@@ -6,11 +6,8 @@ class EditWidget extends StatelessWidget {
   final TextInputType inputType;
   final bool isFieldSenha;
 
-  const EditWidget(
-    this.label,
-    this.inputType, 
-    this.isFieldSenha,
-    {this.controller});
+  const EditWidget(this.label, this.inputType, this.isFieldSenha,
+      {this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +16,11 @@ class EditWidget extends StatelessWidget {
       controller: controller,
       obscureText: isFieldSenha,
       decoration: InputDecoration(
-        enabledBorder: const OutlineInputBorder(
-          borderSide: const BorderSide(
-              color: Color.fromRGBO(71, 130, 116, 1.0), width: 3.0),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Theme.of(context).primaryColor,
+            width: 3.0,
+          ),
         ),
         labelText: label,
         labelStyle: TextStyle(
