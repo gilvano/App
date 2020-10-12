@@ -1,5 +1,6 @@
 import 'package:entrega_app/app/pages/conf/config.dart';
 import 'package:entrega_app/blocs/auth_bloc.dart';
+import 'package:entrega_app/infra/configServer.dart';
 import 'package:flutter/material.dart';
 import 'package:entrega_app/app/widgets/wField.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController _usernameController = TextEditingController(text: "");
   TextEditingController _passwordController = TextEditingController(text: "");
+
+  final configServer = new ConfigServer();
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +117,7 @@ class _LoginState extends State<Login> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Configuracoes()));
+                                      builder: (context) => Configuracoes(configServer)));
                             },
                           ),
                         ),
