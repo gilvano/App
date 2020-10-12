@@ -99,6 +99,7 @@ class _LoginState extends State<Login> {
                           bloc.authenticate(
                             _usernameController.text.trim(),
                             _passwordController.text.trim(),
+                            configServer
                           );
                         }),
                   ),
