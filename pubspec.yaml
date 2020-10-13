@@ -27,6 +27,7 @@ dependencies:
   flutter_bloc: ^6.0.1
   dio: ^3.0.10
   http:
+  flutter_secure_storage:
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -1,21 +1,21 @@
-class AuthModel {
+class UserModel {
+  String id;
   String username;
   String role;
-  String token;
 
-  AuthModel({this.username, this.role, this.token});
+  UserModel({this.id, this.username, this.role});
 
-  AuthModel.fromJson(Map<String, dynamic> json) {
+  UserModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     username = json['username'];
     role = json['role'];
-    token = json['token'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['username'] = this.username;
     data['role'] = this.role;
-    data['token'] = this.token;
     return data;
   }
 }

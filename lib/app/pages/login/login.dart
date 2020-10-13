@@ -1,5 +1,5 @@
 import 'package:entrega_app/app/pages/conf/config.dart';
-import 'package:entrega_app/blocs/auth_bloc.dart';
+import 'package:entrega_app/blocs/auth/auth_bloc.dart';
 import 'package:entrega_app/infra/configServer.dart';
 import 'package:flutter/material.dart';
 import 'package:entrega_app/app/widgets/wField.dart';
@@ -96,11 +96,8 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                         onPressed: () {
-                          bloc.authenticate(
-                            _usernameController.text.trim(),
-                            _passwordController.text.trim(),
-                            configServer
-                          );
+                          bloc.authenticate(_usernameController.text.trim(),
+                              _passwordController.text.trim(), configServer);
                         }),
                   ),
                   Container(
@@ -118,7 +115,8 @@ class _LoginState extends State<Login> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Configuracoes(configServer)));
+                                      builder: (context) =>
+                                          Configuracoes(configServer)));
                             },
                           ),
                         ),
