@@ -1,26 +1,19 @@
-import 'package:entrega_app/infra/configServer.dart';
-import 'package:flutter/material.dart';
 import 'package:entrega_app/app/widgets/wField.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:entrega_app/services/configserver_service.dart';
+import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class Configuracoes extends StatefulWidget {
-  ConfigServer _configServer;
-
   @override
-  _ConfiguracoesState createState() => _ConfiguracoesState(_configServer);
-  Configuracoes(ConfigServer configServer) {
-    this._configServer = configServer;
-  }
+  _ConfiguracoesState createState() => _ConfiguracoesState();
 }
 
 class _ConfiguracoesState extends State<Configuracoes> {
   final iPController = TextEditingController();
   final portaController = TextEditingController();
-  ConfigServer _configServer;
+  var _configServerService = GetIt.I.get<ConfigServerService>();
 
-  _ConfiguracoesState(ConfigServer configServer) {
-    this._configServer = configServer;
-  }
+  _ConfiguracoesState();
 
   @override
   Widget build(BuildContext context) {
@@ -103,17 +96,17 @@ class _ConfiguracoesState extends State<Configuracoes> {
   }
 
   Future<void> _setIpFromSharedPref() async {
-    _configServer.setIp = iPController.text;
+    _configServerService.setIp = iPController.text;
   }
 
   Future<void> _setPortaFromSharedPref() async {
-    _configServer.setPort = portaController.text;
+    _configServerService.setPort = portaController.text;
   }
 
   @override
   void initState() {
-    super.initState();    
-    iPController.text = _configServer.getIp;
-    portaController.text = _configServer.getPort;
+    super.initState();
+    iPController.text = _configServerService.getIp;
+    portaController.text = _configServerService.getPort;
   }
 }

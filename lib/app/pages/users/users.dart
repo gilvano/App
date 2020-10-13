@@ -1,4 +1,5 @@
 import 'package:entrega_app/blocs/user/user_bloc.dart';
+import 'package:entrega_app/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,23 +29,10 @@ class _UsersPageState extends State<UsersPage> {
           builder: (bldrctx, state) {
             if (state is UserLoadedState) {
               return ListView.builder(
-                scrollDirection: Axis.horizontal,
+                scrollDirection: Axis.vertical,
                 itemCount: state.users.length,
                 itemBuilder: (BuildContext ctx, int index) {
-                  return Card(
-                    child: Column(
-                      children: [
-                        ListTile(
-                          leading: Icon(
-                            Icons.account_box,
-                            size: 50,
-                          ),
-                          title: Text(state.users[index].username),
-                        )
-                      ],
-                    ),
-                    elevation: 2,
-                  );
+                  return _getListUsers(index, state.users);
                 },
               );
             } else {
@@ -56,5 +44,17 @@ class _UsersPageState extends State<UsersPage> {
             }
           },
         ));
+  }
+
+  Widget _getListUsers(int index, List<UserModel> listUsers) {
+    return Container(
+      margin: EdgeInsets.all(5.0),
+      height: 50.0,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0), color: Colors.grey[200]),
+      child: Text(
+        listUsers[index].username,
+      ),
+    );
   }
 }

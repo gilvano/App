@@ -1,13 +1,11 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:entrega_app/services/localstorage_service.dart';
 
-class ConfigServer {
+class ConfigServerService {
+  final LocalStorageService localStorageService;
   String _ip;
   String _port;
 
-  ConfigServer() {
-    getIp;
-    getPort;
-  }
+  ConfigServerService(this.localStorageService);
 
   set setIp(String value) {
     _save('IPSERVER', value);
@@ -34,13 +32,11 @@ class ConfigServer {
   }
 
   Future<String> _read(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    final value = prefs.getString(key) ?? '';
+    final value = localStorageService.read(key);
     return value;
   }
 
   _save(String key, value) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString(key, value);
+    localStorageService.save(key, value);
   }
 }
