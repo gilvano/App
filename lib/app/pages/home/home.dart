@@ -1,5 +1,7 @@
-import 'package:entrega_app/app/pages/users/users.dart';
+import 'package:entrega_app/services/navigation_service.dart';
+import 'package:entrega_app/shared/route_paths.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,15 +14,12 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: InkWell(
           onTap: () {
-            print('tap');
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => UsersPage()),
-            );
+            GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
           },
           child: Card(
             child: Column(
