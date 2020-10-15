@@ -1,3 +1,4 @@
+import 'package:entrega_app/app/widgets/drawer/app_drawer.dart';
 import 'package:entrega_app/services/navigation_service.dart';
 import 'package:entrega_app/shared/route_paths.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,9 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
-        automaticallyImplyLeading: false,
+        //automaticallyImplyLeading: false,
       ),
+      drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: InkWell(
           onTap: () {
