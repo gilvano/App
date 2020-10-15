@@ -58,7 +58,7 @@ class AppDrawer extends StatelessWidget {
                 ],
               ),
               Divider(
-                color: Colors.blueGrey,
+                color: Colors.blueGrey[50],
               ),
             ],
           ),
