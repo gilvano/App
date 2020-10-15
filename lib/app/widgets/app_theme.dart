@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData makeAppTheme() {
   final primaryColor = Color.fromRGBO(71, 130, 116, 1.0);
-  final primaryColorDark = Color.fromRGBO(96, 0, 39, 1);
+  final primaryColorDark = Color.fromRGBO(71, 130, 116, 0.7);
   final primaryColorLight = Color.fromRGBO(188, 71, 123, 1);
   final secondaryColor = Color.fromRGBO(0, 77, 64, 1);
   final secondaryColorDark = Color.fromRGBO(0, 37, 26, 1);

@@ -1,3 +1,4 @@
+import 'package:entrega_app/app/widgets/user/user_item.dart';
 import 'package:entrega_app/blocs/user/user_bloc.dart';
 import 'package:entrega_app/models/user_model.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,9 @@ class _UsersPageState extends State<UsersPage> {
     bloc.getUsers();
 
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text('Usuários'),
+        ),
         body: BlocConsumer<UserBloc, UserState>(
           listener: (lsnrctx, state) {
             if (state is UserErrorState) {
@@ -32,7 +35,8 @@ class _UsersPageState extends State<UsersPage> {
                 scrollDirection: Axis.vertical,
                 itemCount: state.users.length,
                 itemBuilder: (BuildContext ctx, int index) {
-                  return _getListUsers(index, state.users);
+                  final user = state.users[index];
+                  return UserItem(user: user);
                 },
               );
             } else {
@@ -44,17 +48,5 @@ class _UsersPageState extends State<UsersPage> {
             }
           },
         ));
-  }
-
-  Widget _getListUsers(int index, List<UserModel> listUsers) {
-    return Container(
-      margin: EdgeInsets.all(5.0),
-      height: 50.0,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0), color: Colors.grey[200]),
-      child: Text(
-        listUsers[index].username,
-      ),
-    );
   }
 }
