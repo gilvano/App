@@ -22,38 +22,52 @@ class AppDrawer extends StatelessWidget {
                 children: <Widget>[
                   DrawerItem(
                     label: 'Home',
-                    iconData: Icons.list,
+                    iconData: Icons.home,
                     onTap: () {
                       GetIt.I.get<NavigationService>().navigateTo(HomeRoute);
                     },
                   ),
                   DrawerItem(
                     label: 'Usuários',
-                    iconData: Icons.edit,
+                    iconData: Icons.person,
                     onTap: () {
                       GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
                     },
                   ),
                   DrawerItem(
                     label: 'Clientes',
-                    iconData: Icons.chat,
+                    iconData: Icons.group_add,
                     onTap: () {
                       GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
                     },
                   ),
                   DrawerItem(
                     label: 'Fornecedores',
-                    iconData: Icons.favorite,
+                    iconData: Icons.domain,
                     onTap: () {
                       GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
                     },
                   ),
                   DrawerItem(
                     label: 'Preços',
-                    iconData: Icons.person,
+                    iconData: Icons.local_atm,
                     onTap: () {
                       GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
-                    },
+                    },                    
+                  ),
+                  DrawerItem(
+                    label: 'Locais',
+                    iconData: Icons.pin_drop,
+                    onTap: () {
+                      GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
+                    },                    
+                  ),
+                  DrawerItem(
+                    label: 'Sair',
+                    iconData: Icons.exit_to_app,
+                    onTap: () {
+                      GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
+                    },                    
                   ),
                 ],
               ),
