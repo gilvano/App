@@ -1,6 +1,8 @@
-import 'package:entrega_app/app/pages/users/users.dart';
+import 'package:entrega_app/app/widgets/drawer/app_drawer.dart';
+import 'package:entrega_app/services/navigation_service.dart';
+import 'package:entrega_app/shared/route_paths.dart';
 import 'package:flutter/material.dart';
-import 'package:entrega_app/app/widgets/tileMenu.dart';
+import 'package:get_it/get_it.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,73 +14,31 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("StartLog"),
+        title: Text("Home"),
+        //automaticallyImplyLeading: false,
       ),
-      drawer: Container(        
-        color: Colors.green,
-        child: Drawer(
-          child: ListView(          
-            children: <Widget>[
-              Divider(color: Colors.blueGrey,),            
-              Column(
-                children: <Widget>[
-                  TileMenu(
-                    label: 'Home',
-                    iconData: Icons.list,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => UsersPage()),
-                      );
-                    },                  
+      drawer: AppDrawer(),
+      body: SingleChildScrollView(
+        child: InkWell(
+          onTap: () {
+            GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
+          },
+          child: Card(
+            child: Column(
+              children: [
+                ListTile(
+                  leading: Icon(
+                    Icons.account_box,
+                    size: 50,
                   ),
-                  TileMenu(
-                    label: 'Usuários',
-                    iconData: Icons.edit,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => UsersPage()),
-                      );
-                    },                  
-                  ),
-                  TileMenu(
-                    label: 'Clientes',
-                    iconData: Icons.chat,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => UsersPage()),
-                      );
-                    },                  
-                  ),
-                  TileMenu(
-                    label: 'Fornecedores',
-                    iconData: Icons.favorite,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => UsersPage()),
-                      );
-                    },                  
-                  ),
-                  TileMenu(
-                    label: 'Preços',
-                    iconData: Icons.person,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => UsersPage()),
-                      );
-                    },                  
-                  ),
-                ],
-              ),
-              Divider(color: Colors.blueGrey,),
-            ],
+                  title: Text('Usuários'),
+                )
+              ],
+            ),
+            elevation: 2,
           ),
         ),
-      ), 
+      ),
     );
   }
 }

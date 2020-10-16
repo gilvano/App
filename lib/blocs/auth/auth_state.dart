@@ -7,7 +7,11 @@ abstract class AuthState {
 
 class AuthInitialState extends AuthState {}
 
-class AuthSuccessState extends AuthState {}
+class AuthSuccessState extends AuthState {
+  AuthSuccessState() {
+    GetIt.I.get<NavigationService>().navigateTo(HomeRoute);
+  }
+}
 
 class AuthInProgressState extends AuthState {}
 

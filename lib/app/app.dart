@@ -1,10 +1,12 @@
-import 'package:entrega_app/app/pages/home/home.dart';
-import 'package:entrega_app/app/pages/login/login.dart';
 import 'package:entrega_app/app/widgets/app_theme.dart';
 import 'package:entrega_app/blocs/auth/auth_bloc.dart';
 import 'package:entrega_app/blocs/user/user_bloc.dart';
+import 'package:entrega_app/services/navigation_service.dart';
+import 'package:entrega_app/shared/route_paths.dart' as routes;
+import 'package:entrega_app/shared/router.dart' as router;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class App extends StatelessWidget {
   @override
@@ -24,23 +26,11 @@ class App extends StatelessWidget {
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
+              navigatorKey: GetIt.I.get<NavigationService>().navigatorKey,
+              onGenerateRoute: router.generateRoute,
+              initialRoute: routes.LoginRoute,
               theme: makeAppTheme(),
               title: 'Login',
-              home: BlocBuilder<AuthBloc, AuthState>(
-                builder: (ctxb, state) {
-                  if (state is AuthSuccessState) {
-                    return Home();
-                  } else {
-                    return Login();
-                  }
-                },
-              ),
             )));
-  }
-
-  Widget buildLoading() {
-    return Center(
-      child: CircularProgressIndicator(),
-    );
   }
 }
