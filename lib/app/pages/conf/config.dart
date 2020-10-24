@@ -106,7 +106,13 @@ class _ConfiguracoesState extends State<Configuracoes> {
   @override
   void initState() {
     super.initState();
-    iPController.text = _configServerService.getIp;
-    portaController.text = _configServerService.getPort;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _carregarConfiguracoes();
+    });
+  }
+
+  _carregarConfiguracoes() async {
+    iPController.text = await _configServerService.getIp;
+    portaController.text = await _configServerService.getPort;
   }
 }

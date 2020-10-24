@@ -9,7 +9,7 @@ class AuthRepository {
 
   Future<AuthModel> login(Map<String, String> data) async {
     try {
-      final _url = makeApiUrl("/auth/login");
+      final _url = await makeApiUrl("/auth/login");
       var response =
           await client.request(url: _url, method: 'post', body: data);
       print(response);

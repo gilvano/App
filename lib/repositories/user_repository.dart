@@ -10,7 +10,7 @@ class UserRepository {
 
   Future<List<UserModel>> getAll() async {
     try {
-      final _url = makeApiUrl("/user");
+      final _url = await makeApiUrl("/user");
       var response = await client.request(url: _url, method: 'get');
       print(response);
       users =

@@ -1,4 +1,3 @@
-import 'package:entrega_app/app/pages/users/users.dart';
 import 'package:entrega_app/app/widgets/drawer/drawer_item.dart';
 import 'package:entrega_app/services/navigation_service.dart';
 import 'package:entrega_app/shared/route_paths.dart';
@@ -53,21 +52,21 @@ class AppDrawer extends StatelessWidget {
                     iconData: Icons.local_atm,
                     onTap: () {
                       GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
-                    },                    
+                    },
                   ),
                   DrawerItem(
                     label: 'Locais',
                     iconData: Icons.pin_drop,
                     onTap: () {
                       GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
-                    },                    
+                    },
                   ),
                   DrawerItem(
                     label: 'Sair',
                     iconData: Icons.exit_to_app,
                     onTap: () {
                       GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
-                    },                    
+                    },
                   ),
                 ],
               ),

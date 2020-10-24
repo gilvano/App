@@ -1,11 +1,18 @@
 import 'package:entrega_app/services/localstorage_service.dart';
+import 'package:get_it/get_it.dart';
 
 class ConfigServerService {
-  final LocalStorageService localStorageService;
+  LocalStorageService _localStorageService;
   String _ip;
   String _port;
 
-  ConfigServerService(this.localStorageService);
+  ConfigServerService() {
+    _localStorageService = GetIt.I.get<LocalStorageService>();
+  }
+
+  Future init() async {
+    await _localStorageService.init();
+  }
 
   set setIp(String value) {
     _save('IPSERVER', value);
@@ -17,26 +24,22 @@ class ConfigServerService {
     this._port = value;
   }
 
-  String get getIp {
-    _read('IPSERVER').then((s) {
-      this._ip = s;
-    });
-    return _ip;
+  Future<String> get getIp async {
+    this._ip = await _read('IPSERVER');
+    return this._ip;
   }
 
-  String get getPort {
-    _read('PORTSERVER').then((s) {
-      this._port = s;
-    });
-    return _port;
+  Future<String> get getPort async {
+    this._port = await _read('PORTSERVER');
+    return this._port;
   }
 
   Future<String> _read(String key) async {
-    final value = localStorageService.read(key);
+    final value = _localStorageService.read(key);
     return value;
   }
 
   _save(String key, value) async {
-    localStorageService.save(key, value);
+    _localStorageService.save(key, value);
   }
 }

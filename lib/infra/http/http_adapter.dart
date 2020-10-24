@@ -34,7 +34,7 @@ class HttpAdapter implements HttpClient {
         futureResponse = client.get(url, headers: defaultHeaders);
       }
       if (futureResponse != null) {
-        response = await futureResponse.timeout(Duration(seconds: 10));
+        response = await futureResponse.timeout(Duration(seconds: 60));
       }
     } catch (error) {
       throw error.toString();

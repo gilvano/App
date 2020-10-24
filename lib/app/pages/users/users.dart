@@ -1,6 +1,5 @@
 import 'package:entrega_app/app/widgets/user/user_item.dart';
 import 'package:entrega_app/blocs/user/user_bloc.dart';
-import 'package:entrega_app/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
