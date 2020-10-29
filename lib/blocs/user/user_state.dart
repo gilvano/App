@@ -1,8 +1,11 @@
 part of 'user_bloc.dart';
 
 @immutable
-abstract class UserState {
+abstract class UserState extends Equatable {
   const UserState();
+
+  @override
+  List<Object> get props => [];
 }
 
 class UserInitialState extends UserState {}
@@ -14,14 +17,25 @@ class UserLoadedState extends UserState {
   UserLoadedState(this.users);
 
   @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
+  List<Object> get props => [users];
+}
 
-    return o is UserLoadedState && o.users == users;
-  }
+class UserSavedState extends UserState {}
+
+class UserUpdatedState extends UserState {
+  final UserModel user;
+  UserUpdatedState(this.user);
 
   @override
-  int get hashCode => users.hashCode;
+  List<Object> get props => [user];
+}
+
+class UserDeletedState extends UserState {
+  final UserModel user;
+  UserDeletedState(this.user);
+
+  @override
+  List<Object> get props => [user];
 }
 
 class UserErrorState extends UserState {
@@ -29,12 +43,5 @@ class UserErrorState extends UserState {
   UserErrorState(this.message);
 
   @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is UserErrorState && o.message == message;
-  }
-
-  @override
-  int get hashCode => message.hashCode;
+  List<Object> get props => [message];
 }

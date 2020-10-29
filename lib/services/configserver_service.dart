@@ -10,10 +10,6 @@ class ConfigServerService {
     _localStorageService = GetIt.I.get<LocalStorageService>();
   }
 
-  Future init() async {
-    await _localStorageService.init();
-  }
-
   set setIp(String value) {
     _save('IPSERVER', value);
     this._ip = value;

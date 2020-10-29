@@ -1,8 +1,11 @@
 import 'package:entrega_app/app/widgets/user/user_item.dart';
 import 'package:entrega_app/blocs/user/user_bloc.dart';
+import 'package:entrega_app/services/navigation_service.dart';
+import 'package:entrega_app/shared/route_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class UsersPage extends StatefulWidget {
   @override
@@ -18,6 +21,13 @@ class _UsersPageState extends State<UsersPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Usuários'),
+          actions: [
+            IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () {
+                  GetIt.I.get<NavigationService>().navigateTo(UserFormRoute);
+                })
+          ],
         ),
         body: BlocConsumer<UserBloc, UserState>(
           listener: (lsnrctx, state) {
@@ -25,6 +35,16 @@ class _UsersPageState extends State<UsersPage> {
               Scaffold.of(lsnrctx).showSnackBar(SnackBar(
                   content: Text(
                 state.message,
+              )));
+            } else if (state is UserDeletedState) {
+              Scaffold.of(lsnrctx).showSnackBar(SnackBar(
+                  content: Text(
+                'Usuário: ${state.user.username} deletado com sucesso!',
+              )));
+            } else if (state is UserSavedState) {
+              Scaffold.of(lsnrctx).showSnackBar(SnackBar(
+                  content: Text(
+                'Usuário criado com sucesso!',
               )));
             }
           },
@@ -39,10 +59,8 @@ class _UsersPageState extends State<UsersPage> {
                 },
               );
             } else {
-              return Column(
-                children: [
-                  Text('teste'),
-                ],
+              return Center(
+                child: CircularProgressIndicator(),
               );
             }
           },

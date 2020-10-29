@@ -32,7 +32,13 @@ class HttpAdapter implements HttpClient {
             client.post(url, headers: defaultHeaders, body: jsonBody);
       } else if (method == 'get') {
         futureResponse = client.get(url, headers: defaultHeaders);
+      } else if (method == 'delete') {
+        futureResponse = client.delete(url, headers: defaultHeaders);
+      } else if (method == 'patch') {
+        futureResponse =
+            client.patch(url, headers: defaultHeaders, body: jsonBody);
       }
+
       if (futureResponse != null) {
         response = await futureResponse.timeout(Duration(seconds: 60));
       }
@@ -46,8 +52,10 @@ class HttpAdapter implements HttpClient {
     switch (response.statusCode) {
       case 200:
         return response.body.isEmpty ? null : jsonDecode(response.body);
+      case 201:
+        return response.body.isEmpty ? null : response.body;
       case 204:
-        return null;
+        return response.body.isEmpty ? null : response.body;
       // case 400: throw HttpError.badRequest;
       // case 401: throw HttpError.unauthorized;
       // case 403: throw HttpError.forbidden;
