@@ -12,7 +12,7 @@ class UserRepository {
     try {
       final _url = await makeApiUrl("/user");
       var response = await client.request(url: _url, method: 'get');
-      print(response);
+      // print(response);
       users =
           List.from(response.map((user) => UserModel.fromJson(user)).toList());
     } catch (e) {
@@ -26,7 +26,7 @@ class UserRepository {
       final _url = await makeApiUrl("/user");
       var response =
           await client.request(url: _url, method: 'post', body: data);
-      print(response.toString());
+      // print(response.toString());
     } catch (e) {
       throw (e.toString());
     }
@@ -39,7 +39,7 @@ class UserRepository {
         "username": userModel.username,
         "role": userModel.role,
       });
-      print(response);
+      // print(response);
     } catch (e) {
       throw (e.toString());
     }
@@ -49,7 +49,7 @@ class UserRepository {
     try {
       final _url = await makeApiUrl('/user/' + userModel.id.toString());
       var response = await client.request(url: _url, method: 'delete');
-      print(response);
+      // print(response);
     } catch (e) {
       throw (e.toString());
     }

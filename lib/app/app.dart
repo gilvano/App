@@ -8,9 +8,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+class LogObserver extends BlocObserver {
+  @override
+  void onChange(Cubit cubit, Change change) {
+    print("${cubit.runtimeType} > $change");
+    super.onChange(cubit, change);
+  }
+}
+
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Bloc.observer = LogObserver();
+
     return GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());

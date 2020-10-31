@@ -42,17 +42,17 @@ class _UserFormState extends State<UserForm> {
   Widget build(BuildContext context) {
     final userBloc = BlocProvider.of<UserBloc>(context);
 
-    void _saveForm() {
+    void _saveForm() async {
       _form.currentState.save();
 
       if (_formData['id'] == null) {
-        userBloc.saveUser(
+        await userBloc.saveUser(
           _formData['username'],
           _formData['password'],
           _formData['role'],
         );
       } else {
-        userBloc.editUser(UserModel(
+        await userBloc.editUser(UserModel(
           id: _formData['id'],
           username: _formData['username'],
           password: _formData['password'],

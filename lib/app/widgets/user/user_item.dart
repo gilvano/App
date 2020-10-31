@@ -33,27 +33,37 @@ class UserItem extends StatelessWidget {
         subtitle: Text(
           user.role,
         ),
-        onTap: () => GetIt.I
-            .get<NavigationService>()
-            .navigateTo(UserFormRoute, arguments: user),
+        onTap: () => _openUserForm(context),
         trailing: MediaQuery.of(context).size.width > 480
             ? FlatButton.icon(
                 icon: Icon(Icons.delete),
-                onPressed: () => _deleteUser(context),
+                onPressed: () async => await _deleteUser(context),
                 label: Text('Excluir'),
                 textColor: Theme.of(context).errorColor,
               )
             : IconButton(
                 icon: Icon(Icons.delete),
                 color: Theme.of(context).errorColor,
-                onPressed: () => _deleteUser(context),
+                onPressed: () async => await _deleteUser(context),
               ),
       ),
     );
   }
 
-  _deleteUser(BuildContext context) {
+  Future<void> _openUserForm(BuildContext context) async {
     var bloc = BlocProvider.of<UserBloc>(context);
-    bloc.deleteUser(user);
+
+    await GetIt.I
+        .get<NavigationService>()
+        .navigateTo(UserFormRoute, arguments: user);
+
+    await bloc.getUsers();
+  }
+
+  _deleteUser(BuildContext context) async {
+    var bloc = BlocProvider.of<UserBloc>(context);
+    await bloc.deleteUser(user);
+    await Future.delayed(Duration(milliseconds: 200));
+    await bloc.getUsers();
   }
 }

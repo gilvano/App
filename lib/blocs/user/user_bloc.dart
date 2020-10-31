@@ -21,8 +21,8 @@ class UserBloc extends Cubit<UserState> {
       emit(UserLoadingState());
       UserRepository repo = UserRepository(makeHttpAdapter(storage));
       users = await repo.getAll();
-      print(users);
-      emit(UserLoadedState(users));
+      // print('Users:' + users.toString());
+      emit(UsersLoadedState(users));
     } catch (e) {
       emit(UserErrorState(e.toString()));
     }
@@ -38,8 +38,6 @@ class UserBloc extends Cubit<UserState> {
         "role": role,
       });
       emit(UserSavedState());
-      emit(UserLoadingState());
-      await getUsers();
     } catch (e) {
       emit(UserErrorState(e.toString()));
     }
@@ -47,7 +45,7 @@ class UserBloc extends Cubit<UserState> {
 
   Future<void> editUser(UserModel user) async {
     try {
-      emit(UserLoadingState());
+      emit(UserUpdatingState());
       UserRepository repo = UserRepository(makeHttpAdapter(storage));
       await repo.editUser(user); //emit(AuthSuccessState());
       emit(UserUpdatedState(user));
@@ -58,12 +56,10 @@ class UserBloc extends Cubit<UserState> {
 
   Future<void> deleteUser(UserModel user) async {
     try {
-      emit(UserLoadingState());
+      emit(UserDeletingState());
       UserRepository repo = UserRepository(makeHttpAdapter(storage));
-      await repo.deleteUser(user); //emit(AuthSuccessState());
+      await repo.deleteUser(user);
       emit(UserDeletedState(user));
-      emit(UserLoadingState());
-      await getUsers();
     } catch (e) {
       emit(UserErrorState(e.toString()));
     }

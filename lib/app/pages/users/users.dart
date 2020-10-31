@@ -15,8 +15,8 @@ class UsersPage extends StatefulWidget {
 class _UsersPageState extends State<UsersPage> {
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<UserBloc>(context);
-    bloc.getUsers();
+    final userBloc = BlocProvider.of<UserBloc>(context);
+    userBloc.getUsers();
 
     return Scaffold(
         appBar: AppBar(
@@ -24,8 +24,11 @@ class _UsersPageState extends State<UsersPage> {
           actions: [
             IconButton(
                 icon: const Icon(Icons.add),
-                onPressed: () {
-                  GetIt.I.get<NavigationService>().navigateTo(UserFormRoute);
+                onPressed: () async {
+                  await GetIt.I
+                      .get<NavigationService>()
+                      .navigateTo(UserFormRoute);
+                  await userBloc.getUsers();
                 })
           ],
         ),
@@ -49,7 +52,7 @@ class _UsersPageState extends State<UsersPage> {
             }
           },
           builder: (bldrctx, state) {
-            if (state is UserLoadedState) {
+            if (state is UsersLoadedState) {
               return ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: state.users.length,
@@ -58,11 +61,15 @@ class _UsersPageState extends State<UsersPage> {
                   return UserItem(user: user);
                 },
               );
-            } else {
+            } else if (state is UserLoadingState ||
+                state is UserDeletingState) {
               return Center(
                 child: CircularProgressIndicator(),
               );
             }
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           },
         ));
   }

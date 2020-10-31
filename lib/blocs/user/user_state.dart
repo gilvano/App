@@ -12,9 +12,14 @@ class UserInitialState extends UserState {}
 
 class UserLoadingState extends UserState {}
 
-class UserLoadedState extends UserState {
+class UserUpdatingState extends UserState {}
+
+class UserDeletingState extends UserState {}
+
+@immutable
+class UsersLoadedState extends UserState {
   final List<UserModel> users;
-  UserLoadedState(this.users);
+  UsersLoadedState(this.users);
 
   @override
   List<Object> get props => [users];
@@ -22,6 +27,7 @@ class UserLoadedState extends UserState {
 
 class UserSavedState extends UserState {}
 
+@immutable
 class UserUpdatedState extends UserState {
   final UserModel user;
   UserUpdatedState(this.user);
@@ -30,6 +36,7 @@ class UserUpdatedState extends UserState {
   List<Object> get props => [user];
 }
 
+@immutable
 class UserDeletedState extends UserState {
   final UserModel user;
   UserDeletedState(this.user);
