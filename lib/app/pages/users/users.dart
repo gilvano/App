@@ -1,4 +1,4 @@
-import 'package:entrega_app/app/widgets/user/user_item.dart';
+import 'package:entrega_app/app/widgets/user/users_list.dart';
 import 'package:entrega_app/blocs/user/user_bloc.dart';
 import 'package:entrega_app/services/navigation_service.dart';
 import 'package:entrega_app/shared/route_paths.dart';
@@ -53,14 +53,7 @@ class _UsersPageState extends State<UsersPage> {
           },
           builder: (bldrctx, state) {
             if (state is UsersLoadedState) {
-              return ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: state.users.length,
-                itemBuilder: (BuildContext ctx, int index) {
-                  final user = state.users[index];
-                  return UserItem(user: user);
-                },
-              );
+              return UsersList(state.users);
             } else if (state is UserLoadingState ||
                 state is UserDeletingState) {
               return Center(
