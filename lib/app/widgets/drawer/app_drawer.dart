@@ -1,7 +1,9 @@
 import 'package:entrega_app/app/widgets/drawer/drawer_item.dart';
+import 'package:entrega_app/blocs/auth/auth_bloc.dart';
 import 'package:entrega_app/services/navigation_service.dart';
 import 'package:entrega_app/shared/route_paths.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -77,9 +79,7 @@ class AppDrawer extends StatelessWidget {
                         label: 'Sair',
                         iconData: Icons.exit_to_app,
                         onTap: () {
-                          GetIt.I
-                              .get<NavigationService>()
-                              .navigateTo(LoginRoute);
+                          BlocProvider.of<AuthBloc>(context).logout();
                         },
                       ),
                     ],

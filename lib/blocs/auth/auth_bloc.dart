@@ -32,4 +32,10 @@ class AuthBloc extends Cubit<AuthState> {
       emit(AuthErrorState(e.toString()));
     }
   }
+
+  logout() {
+    storage.saveSecure(key: "token", value: null);
+    emit(AuthLogoutState());
+    GetIt.I.get<NavigationService>().logout();
+  }
 }

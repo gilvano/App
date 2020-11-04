@@ -1,3 +1,4 @@
+import 'package:entrega_app/app/pages/login/login.dart';
 import 'package:flutter/material.dart';
 
 class NavigationService {
@@ -10,5 +11,12 @@ class NavigationService {
 
   void goBack() {
     return navigatorKey.currentState.pop();
+  }
+
+  void logout() {
+    navigatorKey.currentState.pushAndRemoveUntil(
+      MaterialPageRoute(builder: (BuildContext context) => Login()),
+      ModalRoute.withName('/'),
+    );
   }
 }

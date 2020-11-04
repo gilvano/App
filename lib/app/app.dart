@@ -22,25 +22,27 @@ class App extends StatelessWidget {
     Bloc.observer = LogObserver();
 
     return GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
-        },
-        child: MultiBlocProvider(
-            providers: [
-              BlocProvider<AuthBloc>(
-                create: (context) => AuthBloc(),
-              ),
-              BlocProvider<UserBloc>(
-                create: (context) => UserBloc(),
-              ),
-            ],
-            child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              navigatorKey: GetIt.I.get<NavigationService>().navigatorKey,
-              onGenerateRoute: router.generateRoute,
-              initialRoute: routes.LoginRoute,
-              theme: makeAppTheme(),
-              title: 'Login',
-            )));
+      onTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthBloc>(
+            create: (context) => AuthBloc(),
+          ),
+          BlocProvider<UserBloc>(
+            create: (context) => UserBloc(),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          navigatorKey: GetIt.I.get<NavigationService>().navigatorKey,
+          onGenerateRoute: router.generateRoute,
+          initialRoute: routes.LoginRoute,
+          theme: makeAppTheme(),
+          title: 'Login',
+        ),
+      ),
+    );
   }
 }
