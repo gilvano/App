@@ -1,8 +1,11 @@
 part of 'auth_bloc.dart';
 
 @immutable
-abstract class AuthState {
+abstract class AuthState extends Equatable {
   const AuthState();
+
+  @override
+  List<Object> get props => [];
 }
 
 class AuthInitialState extends AuthState {}
@@ -20,12 +23,5 @@ class AuthErrorState extends AuthState {
   AuthErrorState(this.message);
 
   @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is AuthErrorState && o.message == message;
-  }
-
-  @override
-  int get hashCode => message.hashCode;
+  List<Object> get props => [message];
 }

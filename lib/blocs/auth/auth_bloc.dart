@@ -6,12 +6,14 @@ import 'package:entrega_app/models/auth_model.dart';
 import 'package:entrega_app/repositories/auth_repository.dart';
 import 'package:entrega_app/services/navigation_service.dart';
 import 'package:entrega_app/shared/route_paths.dart';
+import 'package:equatable/equatable.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
 
 part 'auth_state.dart';
 
 class AuthBloc extends Cubit<AuthState> {
+  AuthModel _authModel;
   AuthBloc() : super(AuthInitialState());
 
   final SecureStorageAdapter storage = makeSecureStorageAdapter();
@@ -20,11 +22,11 @@ class AuthBloc extends Cubit<AuthState> {
     try {
       emit(AuthInProgressState());
       AuthRepository repo = AuthRepository(makeHttpAdapter(storage));
-      final AuthModel authModel = await repo.login({
+      _authModel = await repo.login({
         "username": username,
         "password": password,
       });
-      storage.saveSecure(key: "token", value: authModel.token);
+      storage.saveSecure(key: "token", value: _authModel.token);
       emit(AuthSuccessState());
     } catch (e) {
       emit(AuthErrorState(e.toString()));
