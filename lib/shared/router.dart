@@ -1,4 +1,5 @@
 import 'package:entrega_app/app/pages/home/home.dart';
+import 'package:entrega_app/app/pages/localentrega/local_entrega.dart';
 import 'package:entrega_app/app/pages/login/login.dart';
 import 'package:entrega_app/app/pages/users/users.dart';
 import 'package:entrega_app/app/widgets/user/user_form.dart';
@@ -20,6 +21,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           builder: (context) => UserForm(
                 user: user,
               ));
+    case routes.LocalEntregaRoute:
+      return MaterialPageRoute(builder: (context) => LocaisEntrega());
     default:
       return MaterialPageRoute(
         builder: (context) => Scaffold(

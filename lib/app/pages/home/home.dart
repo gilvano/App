@@ -19,24 +19,47 @@ class _HomeState extends State<Home> {
       ),
       drawer: AppDrawer(),
       body: SingleChildScrollView(
-        child: InkWell(
-          onTap: () {
-            GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
-          },
-          child: Card(
-            child: Column(
-              children: [
-                ListTile(
-                  leading: Icon(
-                    Icons.account_box,
-                    size: 50,
-                  ),
-                  title: Text('Usuários'),
-                )
-              ],
+        child: Column(
+          children: [
+            InkWell(
+              onTap: () {
+                GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
+              },
+              child: Card(
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: Icon(
+                        Icons.account_box,
+                        size: 50,
+                      ),
+                      title: Text('Usuários'),
+                    )
+                  ],
+                ),
+                elevation: 2,
+              ),
             ),
-            elevation: 2,
-          ),
+            InkWell(
+              onTap: () {
+                GetIt.I.get<NavigationService>().navigateTo(LocalEntregaRoute);
+              },
+              child: Card(
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: Icon(
+                        Icons.pin_drop,
+                        size: 50,
+                      ),
+                      title: Text('Locais de Entrega'),
+                    )
+                  ],
+                ),
+                elevation: 2,
+              ),
+            ),
+          ],
         ),
       ),
     );

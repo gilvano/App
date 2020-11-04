@@ -1,5 +1,6 @@
 import 'package:entrega_app/app/widgets/app_theme.dart';
 import 'package:entrega_app/blocs/auth/auth_bloc.dart';
+import 'package:entrega_app/blocs/localentrega/local_entrega_bloc.dart';
 import 'package:entrega_app/blocs/user/user_bloc.dart';
 import 'package:entrega_app/services/navigation_service.dart';
 import 'package:entrega_app/shared/route_paths.dart' as routes;
@@ -32,6 +33,9 @@ class App extends StatelessWidget {
           ),
           BlocProvider<UserBloc>(
             create: (context) => UserBloc(),
+          ),
+          BlocProvider<LocalEntregaBloc>(
+            create: (context) => LocalEntregaBloc(),
           ),
         ],
         child: MaterialApp(

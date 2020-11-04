@@ -3,3 +3,4 @@ const String HomeRoute = 'Home';
 const String UsersRoute = 'Users';
 const String UserFormRoute = 'UserForm';
 const String UserAddRoute = 'UserAdd';
+const String LocalEntregaRoute = 'LocalEntrega';
