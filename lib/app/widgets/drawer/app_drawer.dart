@@ -12,67 +12,80 @@ class AppDrawer extends StatelessWidget {
       child: Drawer(
         child: Container(
           color: Theme.of(context).primaryColor,
-          child: ListView(
+          child: Column(
             children: <Widget>[
-              Divider(
-                color: Colors.blueGrey,
+              Expanded(
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 20,
+                    ),
+                    DrawerItem(
+                      label: 'Home',
+                      iconData: Icons.home,
+                      onTap: () {
+                        GetIt.I.get<NavigationService>().navigateTo(HomeRoute);
+                      },
+                    ),
+                    DrawerItem(
+                      label: 'Usuários',
+                      iconData: Icons.person,
+                      onTap: () {
+                        GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
+                      },
+                    ),
+                    DrawerItem(
+                      label: 'Clientes',
+                      iconData: Icons.group_add,
+                      onTap: () {
+                        GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
+                      },
+                    ),
+                    DrawerItem(
+                      label: 'Fornecedores',
+                      iconData: Icons.domain,
+                      onTap: () {
+                        GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
+                      },
+                    ),
+                    DrawerItem(
+                      label: 'Preços',
+                      iconData: Icons.local_atm,
+                      onTap: () {
+                        GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
+                      },
+                    ),
+                    DrawerItem(
+                      label: 'Locais',
+                      iconData: Icons.pin_drop,
+                      onTap: () {
+                        GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
+                      },
+                    ),
+                  ],
+                ),
               ),
-              Column(
-                children: <Widget>[
-                  DrawerItem(
-                    label: 'Home',
-                    iconData: Icons.home,
-                    onTap: () {
-                      GetIt.I.get<NavigationService>().navigateTo(HomeRoute);
-                    },
+              Container(
+                child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: Column(
+                    children: [
+                      Divider(
+                        color: Colors.blueGrey[50],
+                      ),
+                      DrawerItem(
+                        label: 'Sair',
+                        iconData: Icons.exit_to_app,
+                        onTap: () {
+                          GetIt.I
+                              .get<NavigationService>()
+                              .navigateTo(LoginRoute);
+                        },
+                      ),
+                    ],
                   ),
-                  DrawerItem(
-                    label: 'Usuários',
-                    iconData: Icons.person,
-                    onTap: () {
-                      GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
-                    },
-                  ),
-                  DrawerItem(
-                    label: 'Clientes',
-                    iconData: Icons.group_add,
-                    onTap: () {
-                      GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
-                    },
-                  ),
-                  DrawerItem(
-                    label: 'Fornecedores',
-                    iconData: Icons.domain,
-                    onTap: () {
-                      GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
-                    },
-                  ),
-                  DrawerItem(
-                    label: 'Preços',
-                    iconData: Icons.local_atm,
-                    onTap: () {
-                      GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
-                    },
-                  ),
-                  DrawerItem(
-                    label: 'Locais',
-                    iconData: Icons.pin_drop,
-                    onTap: () {
-                      GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
-                    },
-                  ),
-                  DrawerItem(
-                    label: 'Sair',
-                    iconData: Icons.exit_to_app,
-                    onTap: () {
-                      GetIt.I.get<NavigationService>().navigateTo(UsersRoute);
-                    },
-                  ),
-                ],
-              ),
-              Divider(
-                color: Colors.blueGrey[50],
-              ),
+                ),
+              )
             ],
           ),
         ),
